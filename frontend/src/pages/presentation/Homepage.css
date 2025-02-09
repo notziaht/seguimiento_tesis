@@ -1,34 +1,24 @@
 /* Contenedor principal */
 .homepage {
-    width: 100%;
     max-width: 1200px;
-    margin: 0 auto;
-    text-align: center;
-    padding: 40px 20px;
 }
 
 /* Sección de bienvenida (hero) */
 .hero {
-    background-color: #f8f9fa;
-    padding: 40px 20px;
-    border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .hero h1 {
     font-size: 2rem;
-    color: #333;
     margin-bottom: 10px;
 }
 
 .hero p {
     font-size: 1.2rem;
-    color: #666;
 }
 
 /* Sección de características */
 .features {
-    display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
     margin-top: 30px;
@@ -38,14 +28,9 @@
 /* Tarjeta de cada funcionalidad */
 .feature {
     background: #ffffff;
-    padding: 20px;
-    border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     flex: 1;
-    min-width: 300px;
     max-width: 350px;
-    text-align: center;
-    transition: transform 0.3s ease-in-out;
 }
 
 /* Efecto hover en tarjetas */
@@ -56,27 +41,19 @@
 /* Estilos para los títulos de las funcionalidades */
 .feature h3 {
     font-size: 1.5rem;
-    color: #007bff;
     margin-bottom: 10px;
 }
 
 /* Estilos para los párrafos */
 .feature p {
     font-size: 1rem;
-    color: #555;
 }
 
 /* Botones */
 .feature button {
     margin-top: 10px;
     background: #007bff;
-    color: white;
-    border: none;
-    padding: 10px 15px;
     font-size: 1rem;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.3s ease-in-out;
 }
 
 /* Efecto hover en botones */

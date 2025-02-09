@@ -1,12 +1,8 @@
 /* Estilos generales del footer */
 .footer-container {
-    display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #f8f9fa; /* Fondo claro */
-    padding: 20px 40px;
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-    text-align: center;
 }
 
 /* Logo del footer */
@@ -17,21 +13,16 @@
 /* Texto del footer */
 .footer-text p {
     font-size: 0.9rem;
-    color: #555;
-    margin: 0;
 }
 
 /* Contenedor de iconos sociales */
 .footer-social {
-    display: flex;
     gap: 15px;
 }
 
 /* Botones de redes sociales */
 .social-btn img {
-    width: 25px;
     height: 25px;
-    transition: transform 0.3s ease-in-out;
 }
 
 /* Efecto hover en los iconos */
@@ -45,7 +36,6 @@
     .footer-container {
         flex-direction: column;
         gap: 15px;
-        padding: 20px;
     }
 
     .footer-social {

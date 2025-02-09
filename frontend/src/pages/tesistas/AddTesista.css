@@ -1,41 +1,25 @@
 .add-tesista-container {
     max-width: 500px;
-    margin: auto;
-    padding: 20px;
     background: #f9f9f9;
-    border-radius: 8px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
 .add-tesista-container h2 {
-    text-align: center;
     margin-bottom: 20px;
 }
 
 .add-tesista-container label {
-    display: block;
     margin-top: 10px;
-    font-weight: bold;
 }
 
 .add-tesista-container input,
 .add-tesista-container select {
-    width: 100%;
-    padding: 8px;
     margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
 }
 
 .add-tesista-container button {
-    width: 100%;
-    padding: 10px;
     margin-top: 15px;
     background: #28a745;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
 }
 
 .add-tesista-container button:hover {
