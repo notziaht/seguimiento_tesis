@@ -1,0 +1,94 @@
+/* Contenedor principal */
+.tesistas-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 20px; /* Agregando padding */
+}
+
+/* Botón agregar tesista */
+.add-tesista-btn {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s ease-in-out;
+}
+
+.add-tesista-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Contenedor de la tabla */
+.table-container {
+    overflow-x: auto;
+    padding: 20px; /* Agregando padding */
+}
+
+/* Estilos de la tabla */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    background: white;
+    padding: 10px; /* Padding extra dentro de la tabla */
+}
+
+/* Espaciado en las celdas */
+th, td {
+    border: 1px solid #ddd;
+    padding: 12px; /* Aumentando el padding */
+    text-align: left;
+}
+
+/* Encabezados de la tabla */
+th {
+    background-color: #f8f9fa;
+    padding: 15px; /* Más padding para hacerla más espaciosa */
+}
+
+/* Botones de acción */
+.edit-btn, .delete-btn {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.edit-btn {
+    background-color: #ffc107;
+    color: black;
+}
+
+.delete-btn {
+    background-color: #dc3545;
+    color: white;
+}
+
+.edit-btn:hover {
+    background-color: #e0a800;
+}
+
+.delete-btn:hover {
+    background-color: #c82333;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    .tesistas-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .table-container {
+        padding: 10px;
+    }
+
+    table {
+        font-size: 0.9rem;
+    }
+}
