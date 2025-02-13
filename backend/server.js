@@ -15,7 +15,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true}));
 
 // Ruta de ejemplo
-app.get('/api/test', (req, res) => {
+app.get('/api/tesis', (req, res) => {
     const items = [
         {   id: 1, nombre: 'Juancho', apellido: 'Castañares'},
         {   id: 1, nombre: 'Josefina', apellido: 'Zuñiga'},
