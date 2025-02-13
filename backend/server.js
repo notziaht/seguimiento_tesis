@@ -36,7 +36,7 @@ app.get('/', (req, res) => {
 
 // Manejo de errores
 app.use((req, res, next) => {
-    console.error("Ruta no encontrada", error.stack);
+    console.log("Ruta no encontrada", error.stack);
     res.status(504).json({
         status: "error",
         message: "Algo salió mal."
