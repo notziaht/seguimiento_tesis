@@ -46,7 +46,7 @@ router.get('/tesistas', async (req, res) => {
     }
 })
 
-// ------------------------------------ Obtener un registro de tesista ------------------------------------
+// Obtener un registro de tesista con GET
 
 router.get('/tesistas/:id', async (req, res) => {
     try{
@@ -74,7 +74,7 @@ router.get('/tesistas/:id', async (req, res) => {
     }
 })
 
-// ------------------------------------ Para crear un tesista ------------------------------------
+// Crear un tesista con POST
 
 router.post('/tesista', async(req, res) => {
     try {
@@ -109,7 +109,7 @@ router.post('/tesista', async(req, res) => {
     };
 })
 
-//----------------------------------- Actualizar registro con PUT ------------------------------------
+// Actualizar registro con PUT
 
 router.put('/tesista/:id', async(req, res) => {
     try {
@@ -123,7 +123,7 @@ router.put('/tesista/:id', async(req, res) => {
             })
         };
         // Consulta SQL para verificar si el registro existe
-        const [tesista] = await db.query('SELECT * FROM tesistas where id=?', [id]);
+        const [tesista] = await db.query('SELECT * FROM tesistas WHERE id=?', [id]);
 
         if (tesista.length === 0){
             return res.status(404).json({
@@ -153,14 +153,15 @@ router.put('/tesista/:id', async(req, res) => {
         console.error("Error al actualizar el tesista", error);
     };
 })
-//------------------------------------ Eliminar registro con PUT ------------------------------------
+
+// Eliminar registro con DELETE 
 
 router.delete('/tesista/:id', async(req, res) => {
     try {
         const {id} = req.params;
         
         // Consulta SQL para verificar si el registro existe
-        const [tesista] = await db.query('SELECT * FROM tesistas where id=?', [id]);
+        const [tesista] = await db.query('SELECT * FROM tesistas WHERE id=?', [id]);
 
         if (tesista.length === 0){
             return res.status(404).json({
@@ -179,6 +180,33 @@ router.delete('/tesista/:id', async(req, res) => {
     }catch(error){
         console.error("Error al eliminar el tesista", error);
     };
+});
+
+// ------------------------------------ Metodos de búsqueda ------------------------------------
+// BÚSQUEDA POR CÉDULA/PASAPORTE
+router.get('/tesistas/buscar/:nro_documento', async (req, res) => {
+    try{
+        const {nro_documento} = req.params;
+        const [tesista] = await db.query('SELECT * FROM tesistas WHERE nro_documento=?', [nro_documento]);
+
+        if (tesista.length === 0){
+            return res.status(404).json({
+                status: "error",
+                message: "No se encontró el tesista."
+            })
+        }
+
+        res.json({
+            message: "Tesista encontrado exitosamente.",
+            status: "success",
+            data: tesista[0]
+        })
+    } catch (error){
+        res.status(500).json({
+            message: "Error al conseguir el tesista",
+            error: error,
+        })
+    }
 })
 
 module.exports = router;
