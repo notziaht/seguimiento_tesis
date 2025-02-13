@@ -6,13 +6,13 @@
 /* Estilos generales del header */
 .header-container {
     justify-content: space-between;
-    align-items: center;
+    align-items: left;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 /* Contenedor del logo */
 .logo-container figure {
-    align-items: center;
+    align-items: left;
 }
 
 /* Tamaño del logo */

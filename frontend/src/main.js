@@ -1,4 +1,4 @@
-//import './style.css'
+import './style.css'
 import Footer from './components/Footer.js'
 import Header from './components/Header.js'
 import Layout from './components/Layout.js'
@@ -33,7 +33,8 @@ function initApp(){
         //case 'login':
         //case 'dashboard':
         case '/tesistas':
-          mainContent = new ListTesistas;
+          let tesistasList = new ListTesistas;
+          mainContent = tesistasList.render();
           break;
         case '/add-tesista':
           mainContent = new AddTesista;
@@ -54,7 +55,7 @@ function initApp(){
         ${Navigation()}
         ${Header()}
         <main id="main-content">
-          ${mainContent}
+          ${mainContent instanceof HTMLElement ? `` : mainContent}
         </main>
         ${Footer()}
       `;

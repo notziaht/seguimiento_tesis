@@ -25,6 +25,31 @@ export const tesistasService = {
             throw new Error('Estructura de datos incorrecta.')
         }
         return data;
+    },
+
+    async createTesista(tesista){
+        const response = await fetch(`${API_URL}/tesistas`, {
+            method: postMessage,
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+                nombres: tesista.nombres,
+                apellidos: tesista.apellidos,
+                tipo_documento: tesista.tipo_documento,
+                nro_documento: tesista.nro_documento,
+                nro_celular: tesista.nro_celular
+            })
+        });
+
+        if (!response.ok){
+            const errorData = await response.json();
+            throw new Error(errorData.message || 'Error en la peticion')
+        }
+
+        const data = await response.json();
+        return data;
     }
 };
 

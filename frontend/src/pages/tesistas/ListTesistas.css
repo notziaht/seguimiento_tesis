@@ -5,13 +5,18 @@
     margin-bottom: 20px;
 }
 
-/* Contenedor de la tabla */
-.table-container {
-    overflow-x: auto;
+/* Seccion */
+.tesistas-section {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px;
+    margin: 20px auto;
+    max-width: 1000px;
 }
 
 /* Estilos de la tabla */
-table {
+.tesistas-table {
     border-collapse: collapse;
     margin-top: 10px;
     background: white;

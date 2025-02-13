@@ -14,17 +14,18 @@ export default class ListTesistas{
     }
     
     async render() {
+        console.log('Render() function reached.');
         const container = document.createElement('section');
-        container.className('tesistas-section');
+        container.className = 'tesistas-section';
         container.innerHTML = 
         `
-            <section class="tesistas-container">
-                <h2>Lista de Tesistas</h2>
-                <a href="/add-tesista" class="add-tesista-btn">Agregar Tesista</a>
-            </section>
-
-            <section class="table-container">
-                <table>
+            <div class="tesistas-container">
+                <div>
+                    <h2>Lista de Tesistas</h2>
+                    <a href="/add-tesista" class="add-tesista-btn">Agregar Tesista</a>
+                </div>
+            
+                <table class="tesistas-table">
                     <thead>
                         <tr>
                             <th>Nombres</th>
@@ -35,12 +36,17 @@ export default class ListTesistas{
                             <th>Acciones</th>
                         </tr>
                     </thead>
+                    <tbody id="tesistas-table-body">
+                        
+                    </tbody>
                 </table>
-            </section>
+            </div>
         `;
+       
         await this.loadTesistas(container);
         const tbody = container.querySelector('#tesistas-table-body');
         tbody.addEventListener('click', (event) => this.handleRowClick(event));
+        
 
         console.log('Contenedor de tesistas', container.innerHTML);
         return container;
@@ -48,8 +54,9 @@ export default class ListTesistas{
 
     // Se crea el metodo handleRowClick
     handleRowClick(event){
-        const row = event.target.closest('tr');
-        if(!row) return;
+        const tr = event.target.closest('tr');
+        if(!tr) return;
+        
         const tesistaIndex = tr.dataset.index;
         if(tesistaIndex){
             const tesista = this.tesistas[tesistaIndex];
@@ -57,32 +64,35 @@ export default class ListTesistas{
         }
     }
 
-    // Metodo para obteer todos los registros de tesistas y colocarlos en cada fila de la tabla
-    async loadTesistas(){
+    // Metodo para obtener todos los registros de tesistas y colocarlos en cada fila de la tabla
+    async loadTesistas(container){
         const tbody = container.querySelector('#tesistas-table-body');
         try{
             console.log('Inicializando la carga de tesistas');
             tbody.innerHTML = `
             <tr>
-                <td colspan="6">Cargando...</td>
+                <td colspan="5">Cargando...</td>
             </tr>
             `;
-            const tesistas = await tesistasService.getAllTesistas();
+
+            const response = await tesistasService.getAllTesistas();
+            console.log('Respuesta completa del servidor:', response);
             if (!response || !response.data){
-                throw new Error('Estructra de datos incorrecta');
+                throw new Error('Estructra de datos incorrecta.');
             }
-            this.tesistas = tesistas.data;
-            console.log('Tesistas cargados', this.tesistas);
+
+            this.tesistas = response.data;
+            console.log('Tesistas cargados.', this.tesistas);
 
             if(this.tesistas.length === 0){
                 tbody.innerHTML = `
                 <tr>
-                    <td colspan="6">No existen registros de tesistas</td>
+                    <td colspan="5">No existen registros de tesistas.</td>
                 </tr>
-                `
+                `;
             }
             tbody.innerHTML = this.tesistas.map((tesista, index) => {
-                console.log('Tesista', tesista)
+                console.log('Tesista', tesista);
                 return `
                 <tr data-index="${index}">
                     <td>${tesista.nombres}</td>
@@ -98,12 +108,12 @@ export default class ListTesistas{
                 `;
             }).join('');
         }catch(error){
-            console.error('Error en la carga de tesistas', error);
+            console.error('Error en la carga de tesistas.', error);
             tbody.innerHTML = `
             <tr>
-                <td colspan="6">Error en la carga de tesistas</td>
+                <td colspan="5">Error en la carga de tesistas. Verifica la conexión al servidor.</td>
             </tr>
-            `
+            `;
         }
     }
 }

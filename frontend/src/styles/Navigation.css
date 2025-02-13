@@ -13,6 +13,7 @@
 /* Contenedor de los enlaces */
 .nav-links {
     gap: 20px;
+    align-items: end;
 }
 
 /* Estilos de los enlaces */
