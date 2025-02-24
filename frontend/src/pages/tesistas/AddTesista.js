@@ -6,7 +6,8 @@ function AddTesista() {
             form.nombres.value = tesista.nombres;
             form.apellidos.value = tesista.apellidos;
             form.tipo_documento.value = tesista.tipo_documento;
-            form.numeroDocumento.value = tesista.numerodocumento;
+            form.nro_documento.value = tesista.nro_documento;
+            form.nro_celular.value = tesista.nro_celular;
         } catch (error) {
             console.error('Error al cargar datos del tesista:', error);
             alert('Error al cargar los datos del tesista.');
@@ -34,7 +35,8 @@ function AddTesista() {
                 nombres: form.nombres.value,
                 apellidos: form.apellidos.value,
                 tipo_documento: form.tipo_documento.value,
-                numeroDocumento: form.numerodocumento.value
+                nro_documento: form.nro_documento.value,
+                nro_celular: form.nro_celular.value
             };
 
             try {
@@ -60,7 +62,7 @@ function AddTesista() {
     setTimeout(setupFormHandlers, 0);
 
     return `
-    <h1> Formulario de crear  uevo tesista </h1>
+    <h1> Formulario de crear un nuevo tesista </h1>
     <form id="addTesistaForm">
         <div>
             <label>Nombres: </label>
@@ -71,29 +73,23 @@ function AddTesista() {
             <input type="text" name="apellidos"></input>
         </div>
         <div>
-            <label>Tipo Documento: </label>
-            <select name="tipodocumento" requiered>
+            <label>Tipo de documento: </label>
+            <select name="tipo_documento" requiered>
                 <option value="cedula"> Cedula </option>
                 <option value="pasaporte"> Pasaporte </option>
-                <option value="dni"> DNI </option>
-                <option value="ruc"> RUC</option>
             </select>
         </div>
         <div>
-            <label>Numero Documento: </label>
-            <input type="text" name="numerodocumento"></input>
+            <label>Nro. de documento: </label>
+            <input type="text" name="nro_documento"></input>
         </div>
         <div>
-            <label>Direccion: </label>
-            <input type="text" name="direccion"></input>
-        </div>
-        <div>
-            <label>Telefono: </label>
-            <input type="text" name="telefono"></input>
+            <label>Nro. de celular: </label>
+            <input type="text" name="nro_celular"></input>
         </div>
 
-        <buttton type="submit" class="btn-submit"> Guardar </button>
-        <buttton type="button" class="btn-cancel"> Cancelar </button>
+        <button type="submit" class="btn-submit"> Guardar </button>
+        <button type="button" class="btn-cancel"> Cancelar </button>
         
     </form>
     `

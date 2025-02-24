@@ -95,13 +95,15 @@ export default class ListTesistas{
                 console.log('Tesista', tesista);
                 return `
                 <tr data-index="${index}">
-                    <td>${tesista.nombres}</td>
-                    <td>${tesista.apellidos}</td>
-                    <td>${tesista.tipo_documento}</td>
-                    <td>${tesista.nro_documento}</td>
-                    <td>${tesista.nro_celular}</td>
+                    <td>${tesista.nombres || 'S/D'}</td>
+                    <td>${tesista.apellidos || 'S/D'}</td>
+                    <td>${tesista.tipo_documento || 'S/D'}</td>
+                    <td>${tesista.nro_documento || 'S/D'}</td>
+                    <td>${tesista.nro_celular || 'S/D'}</td>
                     <td>
-                    <a href="/agregar-tesista?id=${tesista.id}">Editar</a>
+                    <a href="/agregar-tesista?id=${tesista.id}" class="btn btn-warning btn-edit">
+                        <i class="fas fa-edit"></i> Editar
+                    </a>
                     <button class="btn btn-danger btn-delete" data-tesista-id="${tesista.id}">
                         <i class="fas fa-trash"></i> Eliminar
                     </button>
@@ -109,6 +111,15 @@ export default class ListTesistas{
                 </tr>
                 `;
             }).join('');
+
+            console.log('Tabla actualizada con éxito.')
+
+            // Agregar event listeners para los botones de eliminar
+            const deleteButtons = tbody.querySelectorAll('.btn-delete');
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', (e) => this.handleDelete(e));
+            });
+
         }catch(error){
             console.error('Error en la carga de tesistas.', error);
             tbody.innerHTML = `
@@ -118,4 +129,21 @@ export default class ListTesistas{
             `;
         }
     }
+
+    async handleDelete(event) {
+        const tesistaId = event.target.dataset.tesistaId;
+        if (!tesistaId) return;
+
+        if (confirm('¿Está seguro de eliminar este tesista?')) {
+            try {
+                await tesistasService.deleteTesista(tesistaId);
+                // Recargar la lista después de eliminar
+                await this.loadTesistas(event.target.closest('section'));
+            } catch (error) {
+                console.error('Error al eliminar tesista:', error);
+                alert('Error al eliminar el tesista: ' + error.message);
+            }
+        }
+    }
+
 }
