@@ -22,7 +22,7 @@ export default class ListTesistas{
             <div class="tesistas-container">
                 <div>
                     <h2>Lista de Tesistas</h2>
-                    <a href="/add-tesista" class="add-tesista-btn">Agregar Tesista</a>
+                    <a href="/agregar-tesista" class="add-tesista-btn">Agregar Tesista</a>
                 </div>
             
                 <table class="tesistas-table">
@@ -101,8 +101,10 @@ export default class ListTesistas{
                     <td>${tesista.nro_documento}</td>
                     <td>${tesista.nro_celular}</td>
                     <td>
-                    <a href="#">Editar</a>
-                    <a href="#">Eliminar</a>
+                    <a href="/agregar-tesista?id=${tesista.id}">Editar</a>
+                    <button class="btn btn-danger btn-delete" data-tesista-id="${tesista.id}">
+                        <i class="fas fa-trash"></i> Eliminar
+                    </button>
                     </td>
                 </tr>
                 `;

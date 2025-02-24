@@ -27,30 +27,119 @@ export const tesistasService = {
         return data;
     },
 
-    async createTesista(tesista){
-        const response = await fetch(`${API_URL}/tesistas`, {
-            method: postMessage,
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: JSON.stringify({
-                nombres: tesista.nombres,
-                apellidos: tesista.apellidos,
-                tipo_documento: tesista.tipo_documento,
-                nro_documento: tesista.nro_documento,
-                nro_celular: tesista.nro_celular
-            })
-        });
+    async createTesista(data) {
+        try {
+            console.log('Enviando datos del tesista:', data);
+            const response = await fetch(`${API_URL}/tesista`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    nombres: data.nombres,
+                    apellidos: data.apellidos, 
+                    tipo_documento: data.tipo_documento,
+                    numero_documento: data.numeroDocumento
+                })
+            });
 
-        if (!response.ok){
-            const errorData = await response.json();
-            throw new Error(errorData.message || 'Error en la peticion')
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.message || 'Error al crear tesista');
+            }
+
+            const responseData = await response.json();
+            console.log('Respuesta del servidor:', responseData);
+            return responseData;
+
+        } catch (error) {
+            console.error('Error al crear tesista:', error);
+            throw new Error(`Error al crear tesista: ${error.message}`);
         }
-
-        const data = await response.json();
-        return data;
     }
+
+    ,
+    async updateTesista(id, data) {
+        try {
+            console.log('Actualizando datos del tesista:', data);
+            const response = await fetch(`${API_URL}/tesista/${id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    nombres: data.nombres,
+                    apellidos: data.apellidos,
+                    tipo_documento: data.tipo_documento,
+                    numero_documento: data.numeroDocumento
+                })
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.message || 'Error al actualizar tesista');
+            }
+
+            const responseData = await response.json();
+            console.log('Respuesta del servidor:', responseData);
+            return responseData;
+
+        } catch (error) {
+            console.error('Error al actualizar tesista:', error);
+            throw new Error(`Error al actualizar tesista: ${error.message}`);
+        }
+    },
+
+    async getTesista(id) {
+        try {
+            console.log('Obteniendo datos del tesista:', id);
+            const response = await fetch(`${API_URL}/tesista/${id}`, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.message || 'Error al obtener tesista');
+            }
+
+            const responseData = await response.json();
+            console.log('Respuesta del servidor:', responseData);
+            return responseData.data;
+
+        } catch (error) {
+            console.error('Error al obtener tesista:', error);
+            throw new Error(`Error al obtener tesista: ${error.message}`);
+        }
+    },
+
+    async deleteTesista(id) {
+        try {
+            console.log('Eliminando tesista:', id);
+            const response = await fetch(`${API_URL}/tesista/${id}`, {
+                method: 'DELETE',
+                headers: {  
+                    'Accept': 'application/json'
+                }
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();    
+                throw new Error(errorData.message || 'Error al eliminar tesista');  
+            }
+
+            const responseData = await response.json();
+            console.log('Respuesta del servidor:', responseData);
+            return responseData;
+        } catch (error) {   
+            console.error('Error al eliminar tesista:', error);
+            throw new Error(`Error al eliminar tesista: ${error.message}`);
+        }
+    },
 };
 
 export const tesisService = {

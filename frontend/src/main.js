@@ -36,9 +36,12 @@ function initApp(){
           let tesistasList = new ListTesistas;
           mainContent = tesistasList.render();
           break;
-        case '/add-tesista':
-          mainContent = new AddTesista;
-          break;    
+        case '/agregar-tesista':
+          mainContent = AddTesista();
+          break;
+        case '/eliminar-tesista/:id':
+          mainContent = AddTesista();
+          break;
         case '/tesis':
           mainContent = ListTesis();
           break;
