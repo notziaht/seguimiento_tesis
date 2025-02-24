@@ -5,14 +5,20 @@
 
 /* Estilos generales del header */
 .header-container {
+    display: flex;
     justify-content: space-between;
-    align-items: left;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+    background: #ffffff;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 /* Contenedor del logo */
 .logo-container figure {
-    align-items: left;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* Tamaño del logo */
@@ -21,19 +27,26 @@
 }
 
 /* Estilos del título principal */
-.title-container h1 {
-    font-size: 1.8rem;
+.title-container {
+    text-align: center;
 }
 
-/* Estilos del subtítulo */
+.title-container h1 {
+    font-size: 1.8rem;
+    margin: 0;
+}
+
 .title-container h2 {
     font-size: 1.2rem;
+    margin: 5px 0;
 }
 
 /* Estilos responsivos */
 @media (max-width: 768px) {
     .header-container {
         flex-direction: column;
+        align-items: center;
+        text-align: center;
     }
 
     .logo-container img {

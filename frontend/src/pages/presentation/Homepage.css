@@ -31,6 +31,8 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     flex: 1;
     max-width: 350px;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Efecto hover en tarjetas */
@@ -54,6 +56,9 @@
     margin-top: 10px;
     background: #007bff;
     font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin-top: auto;
 }
 
 /* Efecto hover en botones */
