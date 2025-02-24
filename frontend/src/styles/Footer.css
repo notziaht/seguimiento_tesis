@@ -1,28 +1,40 @@
 /* Estilos generales del footer */
 .footer-container {
-    justify-content: center;
+    display: flex;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 20px;
+    background-color: #f8f8f8;
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
 
 /* Logo del footer */
 .footer-logo img {
     height: 50px; /* Ajusta el tamaño del logo */
+    margin-bottom: 10px;
 }
 
 /* Texto del footer */
 .footer-text p {
     font-size: 0.9rem;
+    margin: 5px 0;
 }
 
 /* Contenedor de iconos sociales */
 .footer-social {
+    display: flex;
     gap: 15px;
+    justify-content: center;
+    margin-top: 10px;
 }
 
 /* Botones de redes sociales */
 .social-btn img {
     height: 25px;
+    transition: transform 0.3s;
 }
 
 /* Efecto hover en los iconos */
