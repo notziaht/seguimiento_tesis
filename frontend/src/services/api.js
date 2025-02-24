@@ -177,5 +177,121 @@ export const tesisService = {
         const data = await response.json();
         console.log('Tesis agregada exitosamente', data);
         return data;
+    },
+    async createTesis(data) {
+        try {
+            console.log('Enviando datos del tesis:', data);
+            const response = await fetch(`${API_URL}/tesis`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    titulo: data.titulo,
+                    descripcion: data.descripcion, 
+                    estado: data.estado,
+                    fecha_entrega: data.fecha_entrega,
+                    fecha_aprobacion: data.fecha_aprobacion,
+                })
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.message || 'Error al crear tesis');
+            }
+
+            const responseData = await response.json();
+            console.log('Respuesta del servidor:', responseData);
+            return responseData;
+
+        } catch (error) {
+            console.error('Error al crear tesis:', error);
+            throw new Error(`Error al crear tesis: ${error.message}`);
+        }
     }
+
+    ,
+    async updateTesis(id, data) {
+        try {
+            console.log('Actualizando datos del tesis:', data);
+            const response = await fetch(`${API_URL}/tesis/${id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    titulo: data.titulo,
+                    descripcion: data.descripcion, 
+                    estado: data.estado,
+                    fecha_entrega: data.fecha_entrega,
+                    fecha_aprobacion: data.fecha_aprobacion,
+                })
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.message || 'Error al actualizar tesis');
+            }
+
+            const responseData = await response.json();
+            console.log('Respuesta del servidor:', responseData);
+            return responseData;
+
+        } catch (error) {
+            console.error('Error al actualizar tesis:', error);
+            throw new Error(`Error al actualizar tesis: ${error.message}`);
+        }
+    },
+
+    async getTesis(id) {
+        try {
+            console.log('Obteniendo datos del tesis:', id);
+            const response = await fetch(`${API_URL}/tesis/${id}`, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.message || 'Error al obtener tesis');
+            }
+
+            const responseData = await response.json();
+            console.log('Respuesta del servidor:', responseData);
+            return responseData.data;
+
+        } catch (error) {
+            console.error('Error al obtener tesis:', error);
+            throw new Error(`Error al obtener tesis: ${error.message}`);
+        }
+    },
+
+    async deleteTesis(id) {
+        try {
+            console.log('Eliminando tesis:', id);
+            const response = await fetch(`${API_URL}/tesis/${id}`, {
+                method: 'DELETE',
+                headers: {  
+                    'Accept': 'application/json'
+                }
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();    
+                throw new Error(errorData.message || 'Error al eliminar tesis');  
+            }
+
+            const responseData = await response.json();
+            console.log('Respuesta del servidor:', responseData);
+            return responseData;
+        } catch (error) {   
+            console.error('Error al eliminar tesis:', error);
+            throw new Error(`Error al eliminar tesis: ${error.message}`);
+        }
+    },
+
 };

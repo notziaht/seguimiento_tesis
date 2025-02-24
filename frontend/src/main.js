@@ -45,8 +45,11 @@ function initApp(){
         case '/tesis':
           mainContent = ListTesis();
           break;
-        case '/add-tesis':
-          mainContent = new AddTesis;
+        case '/agregar-tesis':
+          mainContent = AddTesis();
+          break;
+        case '/eliminar-tesis/:id':
+          mainContent = AddTesis();
           break;
         default:
           mainContent = Homepage();
